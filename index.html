@@ -24,7 +24,20 @@
         h2 {
             font-size: 2.2em;
             color: #9c27b0;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+        }
+        p.click-hint {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
         }
         .container {
             max-width: 1200px;
@@ -46,9 +59,11 @@
             border-radius: 20px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
             transition: transform 0.3s ease;
+            cursor: pointer; /* Turns the mouse into a pointing hand */
         }
         .infographics img:hover {
             transform: scale(1.05); /* Fun zoom effect when hovering */
+            border-color: #ffeb3b; /* Highlight border on hover */
         }
         .pdf-section {
             background-color: #fff9c4; /* Cheerful yellow box */
@@ -99,6 +114,50 @@
             margin-bottom: 15px;
             line-height: 1.5;
         }
+
+        /* --- THE MAGIC ZOOM BOX (MODAL) CSS --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place on the screen */
+            z-index: 1000; /* Sit on top of everything else */
+            padding-top: 30px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.85); /* Dark background */
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 1000px;
+            border: 10px solid white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s;
+        }
+        @keyframes zoomIn {
+            from {transform: scale(0.5); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 60px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #ff5722;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +166,8 @@
         <p>Welcome, creators! Follow the magic steps below to share your ideas with the world.</p>
 
         <h2>Step-by-Step Guides</h2>
+        <p class="click-hint">👇 Click any picture to make it BIG! 👇</p>
+        
         <div class="infographics">
             <img src="Gemini_Generated_Image_pl4t0fpl4t0fpl4t.png" alt="Infographic 1: The Magic Prompt">
             <img src="Gemini_Generated_Image_mupd6amupd6amupd.png" alt="Infographic 2: Making Your Code Real">
@@ -135,5 +196,44 @@
             </ul>
         </div>
     </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="zoomedImg">
+    </div>
+
+    <script>
+        // Get the modal background
+        var modal = document.getElementById("imageModal");
+
+        // Get the image tag inside the modal
+        var modalImg = document.getElementById("zoomedImg");
+
+        // Get all the images inside the 'infographics' div
+        var images = document.querySelectorAll(".infographics img");
+
+        // Loop through the images and add a click event to each one
+        images.forEach(function(img) {
+            img.onclick = function(){
+                modal.style.display = "block"; // Show the dark background
+                modalImg.src = this.src;       // Make the big image the same as the one clicked
+            }
+        });
+
+        // Get the close button (the X)
+        var span = document.getElementsByClassName("close-btn")[0];
+
+        // When they click the X, close the zoom box
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
+
+        // When they click anywhere on the dark background, also close the zoom box
+        modal.onclick = function(event) {
+            if (event.target !== modalImg) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
