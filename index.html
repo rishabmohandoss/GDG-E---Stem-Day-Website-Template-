@@ -24,6 +24,7 @@
         h2 {
             font-size: 2.2em;
             color: #9c27b0;
+            margin-bottom: 10px;
         }
         .container {
             max-width: 1200px;
@@ -55,15 +56,23 @@
             border-radius: 30px;
             border: 5px dashed #ffeb3b;
             margin: 40px auto;
-            max-width: 800px;
+            max-width: 900px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .pdf-viewer {
+            width: 100%;
+            height: 600px;
+            border: 4px solid #ff9800;
+            border-radius: 15px;
+            margin-top: 20px;
+            background-color: #fff;
         }
         .btn {
             display: inline-block;
             background-color: #4caf50;
             color: white;
             padding: 15px 30px;
-            font-size: 1.5em;
+            font-size: 1.2em;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
@@ -75,10 +84,6 @@
             background-color: #43a047;
             transform: translateY(2px);
             box-shadow: 0 4px 0 #2e7d32;
-        }
-        .btn:active {
-            transform: translateY(6px);
-            box-shadow: none;
         }
         .rules-box {
             text-align: left;
@@ -110,25 +115,25 @@
 
         <div class="pdf-section">
             <h2>📖 The Master Guide</h2>
-            <p>This is your official GitHub Pages Single-File Website Generator Prompt! [cite: 1, 2]</p>
-            <p>Use this template to tell the AI exactly what you want. Remember to find the customizable section to describe your awesome website[cite: 35, 37].</p>
-            <a href="GDG Website Development Template.pdf" class="btn" target="_blank">Open the Master Guide!</a>
+            <p>This is your official GitHub Pages Template! Use this guide to tell the AI exactly what you want.</p>
+            
+            <iframe src="GDG Website Development Template.pdf" class="pdf-viewer" title="Master Guide PDF">
+                This browser does not support PDFs. Please download the PDF to view it.
+            </iframe>
+            
+            <br>
+            <a href="GDG Website Development Template.pdf" class="btn" target="_blank">Download Guide</a>
         </div>
 
         <div class="rules-box">
             <h2 style="color: #ff9800; margin-top: 0;">Important Rules to Remember:</h2>
             <ul>
-                <li>The AI must give you ONLY a single, self-contained HTML file! [cite: 6]</li>
-                <li>When you save your code, the file MUST be named <strong>index.html</strong>[cite: 11].</li>
-                <li>No extra tools or compilation are needed[cite: 13].</li>
-                <li>Your website will go live by just placing this file in your GitHub repository and turning on GitHub Pages[cite: 14].</li>
+                <li>The AI must give you ONLY a single, self-contained HTML file!</li>
+                <li>When you save your code, the file MUST be named <strong>index.html</strong>.</li>
+                <li>No extra tools or compilation are needed.</li>
+                <li>Your website will go live by just placing this file in your GitHub repository and turning on GitHub Pages.</li>
             </ul>
         </div>
     </div>
-
-    <script>
-        // A hidden high-five in the console for any curious kids who learn how to open it!
-        console.log("High five! You are going to make a great website!");
-    </script>
 </body>
 </html>
